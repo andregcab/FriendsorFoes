@@ -1,0 +1,14 @@
+
+
+
+
+#start-game-button, #next-question {
+  border: 0;
+  box-shadow: 0;
+  background-color: cadetblue;
+  color: #fff;
+  padding: 20px 40px;
+  font-size: 30px;
+  border-radius: 5px;
+}
+
