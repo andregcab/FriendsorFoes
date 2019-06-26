@@ -132,15 +132,23 @@ class TheFriendsGame {
   constructor(){
     this.questionArray = gameQuestionsArray
     this.currentQuestion
-    this.answer
-    this.randoms
     this.p1Score = 0
     this.p2Score = 0
     this.letters = 'abcd'
     this.player1Turn = true
     this.answerAndGuessArray = []
-    this.round = 0
+    // this.round = 0
     this.clickLock = true;
+    this.gameStarted = false
+    this.player1 = ''
+    this.player2 = ''
+    this.name1Only = $('#p1Name')[0].textContent.split(" ")
+    this.name2Only = $('#p2Name')[0].textContent.split(" ")
+  }
+
+  testVars(){
+    console.log(this.player1)
+    console.log(this.player2)
   }
 
 
@@ -158,6 +166,7 @@ class TheFriendsGame {
     $('#b').text(`B: ${this.currentQuestion.randoms[1].b}`)
     $('#c').text(`C: ${this.currentQuestion.randoms[2].c}`)
     $('#d').text(`D: ${this.currentQuestion.randoms[3].d}`)
+    
 
   }
 
@@ -203,60 +212,59 @@ class TheFriendsGame {
 
 
 
-  // checkTurn(){
-  //   if(this.player1Turn === 1){
-  //     this.player1Turn += 1
-  //   } else {
-  //     this.player1Turn -=1
-  //   }
-  // }
-
 
 }
 
-  
+
+$('#error').hide()
 
 
 
 
-friendsGame = new TheFriendsGame();
-let gameStarted = false
-
+let friendsGame = new TheFriendsGame();
 
 
 
 $('#start-game-button').click(function() {
 
-  let player1 = $('#player1')[0].value
-  let player2 = $('#player2')[0].value
+  friendsGame.player1 = $('#player1')[0].value
+  friendsGame.player2 = $('#player2')[0].value
   
-  
-  if(player1 && player2){
-    // console.log(player1)
-    // console.log(player2)
-    $('#p1Name')[0].textContent = (`${player1} Score`)
-    $('#p2Name')[0].textContent = (`${player2} Score`)
+  if(friendsGame.gameStarted === false){
+  if(friendsGame.player1 && friendsGame.player2){
+    console.log(friendsGame.player1)
+    console.log(friendsGame.player2)
+    $('#p1Name')[0].textContent += (`${friendsGame.player1} Score`)
+    $('#p2Name')[0].textContent += (`${friendsGame.player2} Score`)
     
+    friendsGame.name1Only = $('#p1Name')[0].textContent.split(" ")
+    friendsGame.name2Only = $('#p2Name')[0].textContent.split(" ")
 
-
-    //add something that fades to the next page
     
-
+ 
     friendsGame.chooseQuestion()
-    gameStarted = true
-    console.log('player 1 start!')
+    friendsGame.gameStarted = true
+    $('#error').fadeOut("fast")
+    $('.top-div').fadeOut(2000)
+
+    $('#your-turn-go').text(`Nice to meet you ${friendsGame.name1Only[0]} and ${friendsGame.name2Only[0]} . Welcome to FRIENDS or FOES! Lets begin`)
+
+    setTimeout(()=>{
+      $('#your-turn-go').text(`${friendsGame.name2Only[0]} you're up! Choose the answer that most applies to YOU.`)
+    },1800)
+
+    
 
   } else {
     console.log('cant start the game without both names!')
+    $('#your-turn-go').text('Cant start the game without both names!')
+    $('#error').fadeIn("slow")
   }
-  
-
+}
 });
 
 
 
-// let answerAndGuessArray = [] // the temporary array of letters to check against each other
-// let clickLock = 0 // to keep the user from switching questions 
 
 
 
@@ -266,8 +274,13 @@ $(document).keydown(function(e){ //checks what key was pressed
 
     let selectedLetter = e.key; //assigns the key to a variable
   
-    if(friendsGame.checkClickedLetters(selectedLetter) && gameStarted === true){ // making sure the key pressed is either A B C or D
+    if(friendsGame.checkClickedLetters(selectedLetter) && friendsGame.gameStarted === true){ // making sure the key pressed is either A B C or D
      friendsGame.answerAndGuessArray.push(selectedLetter) //pushes the letter to the temporary array
+     if(friendsGame.player1Turn === true){
+      $('#your-turn-go').text(`${friendsGame.name1Only[0]}, think you know your friend? Let's find out!`)
+    } else {
+      $('#your-turn-go').text(`${friendsGame.name2Only[0]}, think you know your friend? Let's find out!`)
+    }
      console.log(`the letter you selected is ${selectedLetter}`)
      console.log(`the array now has ${friendsGame.answerAndGuessArray}`)
 
@@ -275,40 +288,66 @@ $(document).keydown(function(e){ //checks what key was pressed
  
         if(friendsGame.compareAnswers()){  //if the inputs equal each other....
 
-          console.log(`is it player 1's turn? ${friendsGame.player1Turn}`)
-
-          if(friendsGame.player1Turn === true){ //if the current turn is player 1...
+          // console.log(`is it player 1's turn? ${friendsGame.player1Turn}`)
+          // friendsGame.clickLock = false
+          if(friendsGame.player1Turn){ //if the current turn is player 1...
           friendsGame.p1Score += 1 // add one to player 1 score
           friendsGame.player1Turn = false // change current turn to player 2
+          $('#p1Score').text(friendsGame.p1Score) // changes the score on the screen
           console.log(`player 1 score is now ${friendsGame.p1Score}`)
           console.log("You guessed correct, you know you friend well")
+          $('#your-turn-go').text(`${friendsGame.name1Only[0]}, you guessed correct, you know your friend well :)`)
           console.log(`its player 2s turn`)
           } else {
           friendsGame.p2Score += 1 //add one to player 2 score
           friendsGame.player1Turn = true // change turn back to player 1
+          $('#p2Score').text(friendsGame.p2Score) // changes the score on the screen
           console.log(`player 2 score is now ${friendsGame.p2Score}`)
           console.log("You guessed correct, you know you friend well")
+          $('#your-turn-go').text(`${friendsGame.name2Only[0]}, you guessed correct, you know your friend well :)`)
           console.log(`its player 1s turn`)
           }
 
-       
 
         } else { //if the two inputs don't match
-        console.log("You guessed wrong, what kind of friend are you   :(")
+          if(friendsGame.player1Turn){
+            friendsGame.player1Turn = false
+          }
+          console.log("You guessed wrong, what kind of friend are you   :(")
+          $('#your-turn-go').text('You guessed wrong, what kind of friend are you   :(')
+          // friendsGame.clickLock = false
+          
         }
 
+           setTimeout(function(){
+            $('#your-turn-go').text('Please click "Next Question" to continue!')
+            friendsGame.clickLock = false;
+           }, 2000);
+
           if(friendsGame.checkWinner()){ // after every turn check if either player has reached 5 points
-          console.log(`Game Over! Player ${friendsGame.player1Turn} wins! `)
+            setTimeout(function(){
+              if(!friendsGame.player1Turn){
+              alert('Game Over! Player 1 wins!')
+              } else{
+                alert('Game Over! Player 2 wins!')
+              }
+            }, 500);
+
+            setTimeout(function(){
+              location.reload();
+            }, 1000);
+
+           
+            
           } 
 
-          // friendsGame.clickLock = false;
-          friendsGame.round += 1
-          console.log(friendsGame.clickLock)
+          
+          // friendsGame.round += 1
           // friendsGame.player1Turn = true;
         
-      } else if(friendsGame.answerAndGuessArray.length == 2 ){ //&& friendsGame.clickLock === false
+      } else if(friendsGame.answerAndGuessArray.length > 2 ){ //&& friendsGame.clickLock === false
         // friendsGame.clickLock = true;
-        alert("You must choose the next question!!")
+        $('#your-turn-go').text('Someone needs to click NEXT QUESTION')
       }
 
     } else {
@@ -321,19 +360,25 @@ $(document).keydown(function(e){ //checks what key was pressed
 });
 
 
-// if(friendsGame.clickLock === false){ 
 
-$('#next-question').click(function() {  //this button can now be accessed since the end of the last function added 1
- 
-  friendsGame.answerAndGuessArray = []; //empty the array
-  friendsGame.removeQuestionFromArray(); // remove the current question from the array
-  friendsGame.chooseQuestion(); //choose a new question
-  // clickLock = true //locks the button from being clicked until a new set of pairs has been chosen
-  // friendsGame.player1Turn = true // allows input again from the players
+$('#next-question').click(function() {  
 
+  if(friendsGame.clickLock === false){
+    if(friendsGame.player1Turn === true){
+     $('#your-turn-go').text(`${friendsGame.name2Only[0]}, you're up! Choose the answer that most applies to YOU.`)
+    } else {
+     $('#your-turn-go').text(`${friendsGame.name1Only[0]}, you're up! Choose the answer that most applies to YOU.`)
+    }
+  
+  
+    friendsGame.answerAndGuessArray = []; //empty the array
+    friendsGame.removeQuestionFromArray(); // remove the current question from the array
+    friendsGame.chooseQuestion(); //choose a new question
+    friendsGame.clickLock = true
+  } 
 });
 
-// }
+
 
 
 
