@@ -53,7 +53,7 @@
 
       <div id="player-scores" class="row">
         
-        <div class="col-2">
+        <div class="col-2 top-left-score">
           <p id="p1Name"></p>
           <span id="p1Score">0</span>
         </div>
@@ -62,8 +62,8 @@
           <h1 id="your-turn-go">Welcome to the Friends Game!</h1>
         </div>
 
-        <div class="col-2">
-          <p id="p2Name" class="col-2"></p> 
+        <div class="col-2 top-right-score">
+          <p id="p2Name"></p> 
           <span id="p2Score">0</span>
         </div>
     
@@ -71,37 +71,44 @@
     
     
       <div class="row" id="bottom-half-div">
+      
 
 
 
-        <div class="col-8">
+        <div class="col-8 qnaGrid">
 
-          <div class="row" id="question">
+          <div class="" id="question">
             <h2 id="current-question">The question is</h2>
           </div>
-
-          <div class="row" id="ab">
-            <p class="col-6" id="a">first quess</p>
-            <p class="col-6" id="b">second guess</p>
+          <div id="a">
+            <p id="qa">first quess</p>
           </div>
-
-          <div class="row" id="cd">
-            <p class="col-6" id="c">third quess</p>
-            <p class="col-6" id="d">fourth guess</p>
+          <div id="b">
+            <p id="qb">second guess</p>
+          </div>
+          <div id="c">
+            <p id="qc">third quess</p>
+          </div>
+          <div id="d">
+            <p id="qd">fourth guess</p>
           </div>
 
         </div>
 
         
 
-        <div class="col-4">
+        <div class="col-4 regis-and-button">
 
-          <div class="row" id="host">
+          <div class="" id="host">
             <img id="regis" src="/images/regis.jpg" alt="">
+          </div>
+
+          <div class="gif-div">
+            <img id="gif" src="/gifs/Win/fresh.gif" alt="placeholder gif">
           </div>
       
 
-          <div class="row" id="bottom-button">
+          <div class="" id="bottom-button">
            <button id="next-question">Next Question</button>
           </div>
 

@@ -81,7 +81,7 @@ let gameQuestionsArray = [
     randoms:[{a: 'Cant wait to meet them, my bags are packed'},{b: 'We would have found them by now'},{c: 'Terrifed of becoming alien slaves'},{d: 'I wonder if they like our memes LOL'}]
   },
   {
-    question: 'Your friend won a week all-expenses-paid vacation and they can choose from the following. What do they choose?',
+    question: 'Your friend won a week all-expenses-paid vacation. Where are they going?',
     answer: 'eValue',
     randoms:[{a: 'Eating tour through Italy'},{b: 'Tropical island resport'},{c: 'Guided climb up Kilimanjaro'},{d: 'Yoga Retreat'}]
   },
@@ -162,10 +162,10 @@ class TheFriendsGame {
     // console.log(this.currentQuestion.randoms[3].d)
 
     $('#current-question').text(this.currentQuestion.question)
-    $('#a').text(`A: ${this.currentQuestion.randoms[0].a}`)
-    $('#b').text(`B: ${this.currentQuestion.randoms[1].b}`)
-    $('#c').text(`C: ${this.currentQuestion.randoms[2].c}`)
-    $('#d').text(`D: ${this.currentQuestion.randoms[3].d}`)
+    $('#qa').text(`${this.currentQuestion.randoms[0].a}`)
+    $('#qb').text(`${this.currentQuestion.randoms[1].b}`)
+    $('#qc').text(`${this.currentQuestion.randoms[2].c}`)
+    $('#qd').text(`${this.currentQuestion.randoms[3].d}`)
     
 
   }
@@ -202,7 +202,7 @@ class TheFriendsGame {
 
 
   checkWinner(){
-    if(this.p1Score === 5 || this.p2Score === 5){
+    if(this.p1Score === 5 || this.p2Score === 5 || this.questionArray.length === 0){
       return true
     } else {
       return false
@@ -212,21 +212,20 @@ class TheFriendsGame {
 
 
 
-
 }
 
 
 $('#error').hide()
 
-
-
-
 let friendsGame = new TheFriendsGame();
 
 
 
-$('#start-game-button').click(function() {
 
+
+
+$('#start-game-button').click(function() {
+  
   friendsGame.player1 = $('#player1')[0].value
   friendsGame.player2 = $('#player2')[0].value
   
@@ -250,8 +249,21 @@ $('#start-game-button').click(function() {
     $('#your-turn-go').text(`Nice to meet you ${friendsGame.name1Only[0]} and ${friendsGame.name2Only[0]} . Welcome to FRIENDS or FOES! Lets begin`)
 
     setTimeout(()=>{
+      $('#your-turn-go').text(`My name is Regis and I'll be your host. Let me go over the rules quickly`)
+    },7000)
+
+    setTimeout(()=>{
+      $('#your-turn-go').text(`It's ${friendsGame.name1Only[0]}'s turn which means ${friendsGame.name2Only[0]} will set the answer with the A, B, C or D key.`)
+    },12000)
+
+    setTimeout(()=>{
+      $('#your-turn-go').text(`Then ${friendsGame.name1Only[0]} will try to guess the right answer using the same keys. Let's find out if these two are
+      FRIENDS or FOES!`)
+    },17000)
+
+    setTimeout(()=>{
       $('#your-turn-go').text(`${friendsGame.name2Only[0]} you're up! Choose the answer that most applies to YOU.`)
-    },1800)
+    },20000)
 
     
 
@@ -291,55 +303,55 @@ $(document).keydown(function(e){ //checks what key was pressed
           // console.log(`is it player 1's turn? ${friendsGame.player1Turn}`)
           // friendsGame.clickLock = false
           if(friendsGame.player1Turn){ //if the current turn is player 1...
-          friendsGame.p1Score += 1 // add one to player 1 score
-          friendsGame.player1Turn = false // change current turn to player 2
-          $('#p1Score').text(friendsGame.p1Score) // changes the score on the screen
-          console.log(`player 1 score is now ${friendsGame.p1Score}`)
-          console.log("You guessed correct, you know you friend well")
-          $('#your-turn-go').text(`${friendsGame.name1Only[0]}, you guessed correct, you know your friend well :)`)
-          console.log(`its player 2s turn`)
+            friendsGame.p1Score += 1 // add one to player 1 score
+            friendsGame.player1Turn = false // change current turn to player 2
+            $('#p1Score').text(friendsGame.p1Score) // changes the score on the screen
+            console.log(`player 1 score is now ${friendsGame.p1Score}`)
+            console.log("You guessed correct, you know you friend well")
+            $('#your-turn-go').text(`${friendsGame.name1Only[0]}, you guessed correct, you know your friend well :)`)
+            console.log(`its player 2s turn`)
           } else {
-          friendsGame.p2Score += 1 //add one to player 2 score
-          friendsGame.player1Turn = true // change turn back to player 1
-          $('#p2Score').text(friendsGame.p2Score) // changes the score on the screen
-          console.log(`player 2 score is now ${friendsGame.p2Score}`)
-          console.log("You guessed correct, you know you friend well")
-          $('#your-turn-go').text(`${friendsGame.name2Only[0]}, you guessed correct, you know your friend well :)`)
-          console.log(`its player 1s turn`)
+            friendsGame.p2Score += 1 //add one to player 2 score
+            friendsGame.player1Turn = true // change turn back to player 1
+            $('#p2Score').text(friendsGame.p2Score) // changes the score on the screen
+            console.log(`player 2 score is now ${friendsGame.p2Score}`)
+            console.log("You guessed correct, you know you friend well")
+            $('#your-turn-go').text(`${friendsGame.name2Only[0]}, you guessed correct, you know your friend well :)`)
+            console.log(`its player 1s turn`)
           }
 
 
         } else { //if the two inputs don't match
           if(friendsGame.player1Turn){
-            friendsGame.player1Turn = false
-          }
+            friendsGame.player1Turn = false;
+          }else{
+            friendsGame.player1Turn = true;
+          } 
+          // friendsGame.clickLock = false
           console.log("You guessed wrong, what kind of friend are you   :(")
           $('#your-turn-go').text('You guessed wrong, what kind of friend are you   :(')
-          // friendsGame.clickLock = false
           
         }
 
-           setTimeout(function(){
-            $('#your-turn-go').text('Please click "Next Question" to continue!')
-            friendsGame.clickLock = false;
-           }, 2000);
-
           if(friendsGame.checkWinner()){ // after every turn check if either player has reached 5 points
             setTimeout(function(){
-              if(!friendsGame.player1Turn){
-              alert('Game Over! Player 1 wins!')
+              if(friendsGame.player1Turn){
+              alert(`Game Over! ${friendsGame.name2Only[0]} wins!`)
               } else{
-                alert('Game Over! Player 2 wins!')
+                alert(`Game Over! ${friendsGame.name1Only[0]} wins!`)
               }
             }, 500);
 
             setTimeout(function(){
               location.reload();
             }, 1000);
-
-           
             
           } 
+
+          setTimeout(function(){
+            $('#your-turn-go').text('Please click "Next Question" to continue!')
+            friendsGame.clickLock = false;
+          }, 2000);
 
           
           // friendsGame.round += 1
@@ -363,7 +375,7 @@ $(document).keydown(function(e){ //checks what key was pressed
 
 $('#next-question').click(function() {  
 
-  if(friendsGame.clickLock === false){
+  // if(friendsGame.clickLock === false){
     if(friendsGame.player1Turn === true){
      $('#your-turn-go').text(`${friendsGame.name2Only[0]}, you're up! Choose the answer that most applies to YOU.`)
     } else {
@@ -375,7 +387,7 @@ $('#next-question').click(function() {
     friendsGame.removeQuestionFromArray(); // remove the current question from the array
     friendsGame.chooseQuestion(); //choose a new question
     friendsGame.clickLock = true
-  } 
+  // }
 });
 
 

@@ -151,11 +151,6 @@ body{
 }
 
 
-
-
-
-
-
 .bottom-div{
   background-image: url(/images/set1.jpg);
   background-size: 110%;
@@ -165,46 +160,149 @@ body{
   padding: 10px;
 }
 
+#bottom-half-div{
+  height: 840px;
+}
+
 
 #player-scores{
+  padding: 20px 0px;
+  display: flex;
+  align-items: center;
+}
 
+.top-left-score{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+}
+
+#p1Name{
+  font-size: 35px;
+  background-color: black;
+  text-align: center;
+  margin-top: 8px;
+}
+
+#p1Score{
+  font-size: 35px;
+  color: black;
+}
+
+.top-left-score > p{
+  padding-left: 10px;
+}
+
+
+.top-right-score{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+}
+
+#p2Name{
+  font-size: 35px;
+  background-color: black;
+  text-align: center;
+  margin-top: 8px;
+}
+
+#p2Score{
+  font-size: 35px;
+  color: black;
+}
+
+.top-right-score > p{
+  padding-right: 10px;
 }
 
 
 #dio-box{
+  display: flex;
+  justify-content: center;
+  border-left: 2px solid white;
+  border-top: 2px solid white;
+  border-right: 2px solid white;
+  background-color: rgb(255, 255, 255);
+  color: black;
+  height: 100px;
+}
 
+.qnaGrid{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-image: url(/images/Question+A+A-2.jpg);
+  background-repeat: no-repeat;
+  background-position-x: 40px;
+  margin-top: 75px;
+}
+
+#question{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 85px 0px 160px 0px;
+  height: 50px;
+  width: 900px;
+}
+
+#current-question{
+  padding-left: 125px;
+  text-align: center;
+}
+
+.qnaGrid > div > p {
+  margin-bottom: 78px;
+  margin-left: 170px;
+}
+
+.a, .b, .c, .d {
+  display:flex;
+  flex-wrap: wrap;
+}
+
+
+.regis-and-button{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 840px;
 }
 
 #host{
-
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding-top: 50px;
 }
-
 
 #regis{
-  width: 300px;
+  width: 400px;
+  border: 3px solid white;
 }
 
-
-#questions{
-
+.gif-div{
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
-
-
-.first-player{
-  background-image: url(/images/Who-Wants-To-Be-A-Millionaire-1769846.jpg)
-}
-
-
-.second-player{
-  background-image: url(/images/2qkodw.jpg);
-  height: 500px;
-  background-size: cover;
+#gif{
+  width: 400px;
 }
 
 
 #bottom-button{
-
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-bottom: 40px;
 }
+
+
 
 #next-question {
   border: 0;
@@ -215,5 +313,7 @@ body{
   font-size: 30px;
   border-radius: 5px;
 }
+
+
 
 
