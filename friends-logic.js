@@ -250,22 +250,21 @@ $('#start-game-button').click(function() {
 
     setTimeout(()=>{
       $('#your-turn-go').text(`My name is Regis and I'll be your host. Let me go over the rules quickly`)
-    },7000)
+    },6000)
 
     setTimeout(()=>{
       $('#your-turn-go').text(`It's ${friendsGame.name1Only[0]}'s turn which means ${friendsGame.name2Only[0]} will set the answer with the A, B, C or D key.`)
-    },12000)
+    },11000)
 
     setTimeout(()=>{
       $('#your-turn-go').text(`Then ${friendsGame.name1Only[0]} will try to guess the right answer using the same keys. Let's find out if these two are
       FRIENDS or FOES!`)
-    },17000)
+    },16000)
 
     setTimeout(()=>{
       $('#your-turn-go').text(`${friendsGame.name2Only[0]} you're up! Choose the answer that most applies to YOU.`)
     },20000)
 
-    
 
   } else {
     console.log('cant start the game without both names!')
@@ -328,8 +327,8 @@ $(document).keydown(function(e){ //checks what key was pressed
             friendsGame.player1Turn = true;
           } 
           // friendsGame.clickLock = false
-          console.log("You guessed wrong, what kind of friend are you   :(")
-          $('#your-turn-go').text('You guessed wrong, what kind of friend are you   :(')
+          console.log("You guessed wrong, what kind of friend are you  :(")
+          $('#your-turn-go').text('You guessed wrong, what kind of friend are you  :(')
           
         }
 
