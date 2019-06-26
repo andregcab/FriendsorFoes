@@ -152,7 +152,7 @@ body{
 
 
 .bottom-div{
-  background-image: url(/images/set1.jpg);
+  background-image: url(images/set1.jpg);
   background-size: 110%;
   height:950px;
   background-repeat: no-repeat;
@@ -235,7 +235,7 @@ body{
   display: flex;
   justify-content: center;
   flex-direction: column;
-  background-image: url(/images/Question+A+A-2.jpg);
+  background-image: url(images/Question+A+A-2.jpg);
   background-repeat: no-repeat;
   background-position-x: 40px;
   margin-top: 75px;
