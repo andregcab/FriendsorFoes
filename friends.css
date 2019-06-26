@@ -153,7 +153,7 @@ body{
 
 .bottom-div{
   background-image: url(images/set1.jpg);
-  background-size: 110%;
+  background-size: cover;
   height:950px;
   background-repeat: no-repeat;
   color: white;
@@ -161,12 +161,12 @@ body{
 }
 
 #bottom-half-div{
-  height: 820px;
+  height: 780px;
 }
 
 
 #player-scores{
-  padding: 20px 0px;
+  padding: 5px 0px;
   display: flex;
   align-items: center;
 }
@@ -176,21 +176,23 @@ body{
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: white;
-  border: 2px solid purple;
-  border-radius: 10px;
+  background-color: rgb(255, 255, 255, 0.87);
+  border: 2px solid rgb(255, 188, 4);
+  border-radius: 30px;
+  height: 130px;
 }
 
 #p1Name{
   font-size: 35px;
-  background-color: black;
+  color: black;;
   text-align: center;
   margin-top: 8px;
+  height: 35px;
 }
 
 #p1Score{
-  font-size: 35px;
-  color: black;
+  font-size: 55px;
+  color: rgb(221, 116, 221);
 }
 
 .top-left-score > p{
@@ -202,21 +204,22 @@ body{
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: white;
-  border: 2px solid purple;
-  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.87);
+  border: 2px solid rgb(255, 188, 4);
+  border-radius: 30px;
+  height: 130px;
 }
 
 #p2Name{
   font-size: 35px;
-  background-color: black;
+  color: black;;
   text-align: center;
-  margin-top: 8px;
+  height: 35px;
 }
 
 #p2Score{
-  font-size: 35px;
-  color: black;
+  font-size: 55px;
+  color: rgb(221, 116, 221);
 }
 
 .top-right-score > p{
@@ -227,14 +230,16 @@ body{
 #dio-box{
   display: flex;
   justify-content: center;
-  border-left: 2px solid white;
-  border-top: 2px solid white;
-  border-right: 2px solid white;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255, 0.87);
   color: black;
-  height: 100px;
-  border: 4px solid purple;
+  height: 120px;
+  border: 3px solid rgb(255, 188, 4);
   border-radius: 20px;
+}
+
+#your-turn-go{
+  font-size: 35px;
+  margin-top: 20px;
 }
 
 .qnaGrid{
@@ -244,7 +249,7 @@ body{
   background-image: url(images/Question+A+A-2.jpg);
   background-repeat: no-repeat;
   background-position-x: 40px;
-  margin-top: 50px;
+  margin-top: 25px;
 }
 
 #question{
@@ -276,7 +281,7 @@ body{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 840px;
+  height: 785px;
 }
 
 #host{
@@ -287,8 +292,8 @@ body{
 }
 
 #regis{
-  width: 400px;
-  border: 10px solid purple;
+  width: 380px;
+  border: 4px solid white;
   border-radius: 40px;
 }
 
@@ -299,8 +304,8 @@ body{
 }
 #gif{
   width: 400px;
-  border: 1px solid black;
-  border-radius: 15px;
+  border: 1px solid white;
+  border-radius: 10px;
 }
 
 
@@ -308,21 +313,45 @@ body{
   display: flex;
   justify-content: center;
   align-content: center;
-  margin-bottom: 40px;
 }
 
-
-
 #next-question {
-  border: 0;
+  border: 1px solid white;
   box-shadow: 0;
-  background-color: cadetblue;
+  background-color: goldenrod;
   color: #fff;
   padding: 20px 40px;
   font-size: 30px;
   border-radius: 5px;
+  transition: all 0.5s;
+  cursor: pointer;
 }
 
+
+#bottom-button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+#bottom-button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+#bottom-button:hover span {
+  padding-right: 25px;
+}
+
+#bottom-button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
 
 
 
