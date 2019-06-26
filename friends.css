@@ -244,7 +244,7 @@ body{
   background-image: url(images/Question+A+A-2.jpg);
   background-repeat: no-repeat;
   background-position-x: 40px;
-  margin-top: 75px;
+  margin-top: 50px;
 }
 
 #question{
@@ -283,7 +283,7 @@ body{
   display: flex;
   justify-content: center;
   align-content: center;
-  padding-top: 50px;
+  padding-top: 20px;
 }
 
 #regis{
