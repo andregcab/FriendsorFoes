@@ -332,7 +332,7 @@ $(document).keydown(function(e){ //checks what key was pressed
 
 
 $('#next-question').click(function() {  
-  // if(friendsGame.clickLock === false){
+  if(friendsGame.clickLock === false){
   if(friendsGame.player1Turn === true){
      $('#your-turn-go').text(`${friendsGame.name2Only[0]}, you're up! Choose the answer that most applies to YOU.`)
   } else {
@@ -342,7 +342,7 @@ $('#next-question').click(function() {
     friendsGame.removeQuestionFromArray(); // remove the current question from the array
     friendsGame.chooseQuestion(); //choose a new question
     friendsGame.clickLock = true
-  // }
+  }
 });
 
 
