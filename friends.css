@@ -267,8 +267,9 @@ body{
 }
 
 .qnaGrid > div > p {
-  margin-bottom: 78px;
+  margin-bottom: 73px;
   margin-left: 170px;
+  font-size: 20px;
 }
 
 .a, .b, .c, .d {
