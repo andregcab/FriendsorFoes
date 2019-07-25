@@ -1,1 +1,1 @@
-# Project-1---Friends-Game
+# Project-1 Friends or Foes!
